@@ -1,3 +1,4 @@
+# Configures the FluentD repo
 class fluentd::install_repo inherits fluentd {
   case $facts['osfamily'] {
     'redhat': {

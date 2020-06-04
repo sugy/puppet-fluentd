@@ -20,6 +20,6 @@ fluentd::config { '500_elasticsearch.conf':
       'logstash_format' => true,
       'index_name'      => 'foo',
       'type_name'       => 'bar',
-    }
-  }
+    },
+  },
 }

@@ -1,3 +1,4 @@
+# Installs FluentD
 class fluentd::install inherits fluentd {
   if $fluentd::repo_install {
     require fluentd::install_repo
@@ -18,7 +19,7 @@ class fluentd::install inherits fluentd {
   }
 
   -> file { $fluentd::config_file:
-    ensure => present,
+    ensure => file,
     source => 'puppet:///modules/fluentd/td-agent.conf',
     owner  => $fluentd::config_owner,
     group  => $fluentd::config_group,

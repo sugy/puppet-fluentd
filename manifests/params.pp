@@ -1,3 +1,4 @@
+# Common fluentd parameters
 class fluentd::params {
   $repo_install = true
   $repo_name = 'treasuredata'

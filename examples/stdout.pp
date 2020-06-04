@@ -9,6 +9,6 @@ fluentd::config { '500_basic.conf':
     'match'  => {
       'tag_pattern' => 'fluentd.test.**',
       'type'        => 'stdout',
-    }
-  }
+    },
+  },
 }
