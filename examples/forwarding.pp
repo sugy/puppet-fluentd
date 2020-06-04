@@ -18,7 +18,7 @@ fluentd::config { '600_forwarding.conf':
           'host' => 'localhost',
           'port' => 24225
         },
-      ]
-    }
-  }
+      ],
+    },
+  },
 }
