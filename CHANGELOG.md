@@ -1,3 +1,8 @@
+## Development
+
+- Convert module to PDK
+- Added support for installing on Windows
+
 ## 2017-09-01 - Release v. 0.10.0
 
 - Update version requirements for `puppetlabs/stdlib`

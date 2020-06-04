@@ -6,11 +6,15 @@ RSpec.describe 'fluentd' do
     supported_os: [
       {
         'operatingsystem'        => 'CentOS',
-        'operatingsystemrelease' => ['6', '7'],
+        'operatingsystemrelease' => ['6', '7', '8'],
       },
       {
         'operatingsystem'        => 'Ubuntu',
-        'operatingsystemrelease' => ['16', '18'],
+        'operatingsystemrelease' => ['16', '18', '20'],
+      },
+      {
+        'operatingsystem'        => 'Windows',
+        'operatingsystemrelease' => ['2012', '2016', '2019'],
       },
     ],
   }
