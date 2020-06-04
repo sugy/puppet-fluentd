@@ -1,13 +1,28 @@
 require 'spec_helper'
 
 RSpec.describe 'fluentd::plugin' do
+  let(:pre_condition) { 'include fluentd' }
   let(:title) { 'fluent-plugin-test' }
 
-  context 'with redhat', :redhat do
-    it { is_expected.to contain_package(title).with(provider: 'tdagent') }
-  end
+  test_on = {
+    hardwaremodels: ['x86_64'],
+    supported_os: [
+      {
+        'operatingsystem'        => 'CentOS',
+        'operatingsystemrelease' => ['6', '7'],
+      },
+      {
+        'operatingsystem'        => 'Ubuntu',
+        'operatingsystemrelease' => ['16', '18'],
+      },
+    ],
+  }
 
-  context 'with debian', :debian do
-    it { is_expected.to contain_package(title).with(provider: 'tdagent') }
+  on_supported_os(test_on).each do |os, os_facts|
+    context "on #{os}" do
+      let(:facts) { os_facts }
+
+      it { is_expected.to contain_package(title).with(provider: 'tdagent') }
+    end
   end
 end
