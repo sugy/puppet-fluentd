@@ -1,6 +1,6 @@
 # Fluentd
 
-[![Build Status](https://travis-ci.org/soylent/konstantin-fluentd.svg?branch=master)](https://travis-ci.org/soylent/konstantin-fluentd)
+[![Build Status](https://travis-ci.org/EncoreTechnologies/puppet-fluentd.svg?branch=master)](https://travis-ci.org/EncoreTechnologies/puppet-fluentd)
 
 Install, configure, and manage Fluentd data collector.
 
