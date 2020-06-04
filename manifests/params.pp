@@ -6,33 +6,36 @@ class fluentd::params {
 
   case $facts['os']['family'] {
     'RedHat': {
-      $repo_manage = true
       $config_file = '/etc/td-agent/td-agent.conf'
       $config_file_mode = '0640'
       $config_path = '/etc/td-agent/config.d'
       $config_path_mode = '0750'
       $config_owner = 'td-agent'
       $config_group = 'td-agent'
+      $package_provider = undef
+      $repo_manage = true
     }
     'Debian': {
-      $repo_manage = true
       $config_file = '/etc/td-agent/td-agent.conf'
       $config_file_mode = '0640'
       $config_path = '/etc/td-agent/config.d'
       $config_path_mode = '0750'
       $config_owner = 'td-agent'
       $config_group = 'td-agent'
+      $package_provider = undef
+      $repo_manage = true
     }
     'windows': {
-      # there is no public repo for windows, we assume that the user has already
-      # setup the Chocolatey sources correctly
-      $repo_manage = false
       $config_file = 'C:/opt/td-agent/etc/td-agent/td-agent.conf'
       $config_file_mode = undef
       $config_path = 'C:/opt/td-agent/etc/td-agent/config.d'
       $config_path_mode = undef
       $config_owner = 'Administrator'
       $config_group = 'Administrator'
+      $package_provider = 'chocolatey'
+      # there is no public repo for windows, we assume that the user has already
+      # setup the Chocolatey sources correctly
+      $repo_manage = false
     }
     default: {
       fail("Unsupported osfamily ${facts['os']['family']}")

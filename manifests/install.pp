@@ -3,8 +3,9 @@ class fluentd::install inherits fluentd {
   contain fluentd::repo
 
   package { $fluentd::package_name:
-    ensure  => $fluentd::package_ensure,
-    require => Class['fluentd::repo'],
+    ensure   => $fluentd::package_ensure,
+    provider => $fluentd::package_provider,
+    require  => Class['fluentd::repo'],
   }
 
   -> file { $fluentd::config_path:
