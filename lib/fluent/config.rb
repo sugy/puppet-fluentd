@@ -15,19 +15,17 @@ module FluentConfig
     def generate(config, header = '')
       # @note Hash iteration order is arbitrary in ruby 1.8.7
       #   https://projects.puppetlabs.com/issues/16266
-      config.keys.sort.inject(header.dup) do |result, plugin_type|
+      config.keys.sort.each_with_object(header.dup) do |plugin_type, result|
         plugin_configs = array_wrap(config.fetch(plugin_type))
 
         plugin_configs.each do |plugin_config|
           tag_pattern = plugin_config.delete(TAG_PATTERN)
           result << directive_tag(plugin_type, tag_pattern) do
-            plugin_config.keys.sort.inject('') do |body, parameter|
+            plugin_config.keys.sort.reduce('') do |body, parameter|
               body << directive_body(parameter, plugin_config.fetch(parameter))
             end
           end
         end
-
-        result
       end
     end
 
@@ -56,7 +54,7 @@ module FluentConfig
     end
 
     def left_pad(text, padding)
-      text.each_line.inject('') do |result, line|
+      text.each_line.reduce('') do |result, line|
         result << padding << line
       end
     end

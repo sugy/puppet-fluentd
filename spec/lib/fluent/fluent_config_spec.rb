@@ -12,8 +12,8 @@ RSpec.describe FluentConfig do
     fluent_config = described_class.generate(
       'source' => {
         'type' => 'forward',
-        'port' => 24224
-      }
+        'port' => 24_224,
+      },
     )
 
     expect(fluent_config).to eq <<-CONFIG.strip_heredoc
@@ -29,8 +29,8 @@ RSpec.describe FluentConfig do
       'match' => {
         'path' => '/var/log/fluent/access',
         'tag_pattern' => 'myapp.access',
-        'type' => 'file'
-      }
+        'type' => 'file',
+      },
     )
 
     expect(fluent_config).to eq <<-CONFIG.strip_heredoc
@@ -47,9 +47,9 @@ RSpec.describe FluentConfig do
         'tag_pattern' => 'myapp.access',
         'type' => 'record_transformer',
         'record' => {
-          'host_param' => '"#{Socket.gethostname}"'
-        }
-      }
+          'host_param' => '"#{Socket.gethostname}"',
+        },
+      },
     )
 
     expect(fluent_config).to eq <<-CONFIG.strip_heredoc
@@ -70,14 +70,14 @@ RSpec.describe FluentConfig do
         'store' => [
           {
             'type' => 'tcp',
-            'host' => '192.168.1.21'
+            'host' => '192.168.1.21',
           },
           {
             'type' => 'tcp',
-            'host' => '192.168.1.22'
-          }
-        ]
-      }
+            'host' => '192.168.1.22',
+          },
+        ],
+      },
     )
 
     expect(fluent_config).to eq <<-CONFIG.strip_heredoc
@@ -99,19 +99,19 @@ RSpec.describe FluentConfig do
     fluent_config = described_class.generate(
       'source' => {
         'type' => 'tail',
-        'label' => '@SYSTEM'
+        'label' => '@SYSTEM',
       },
       'label' => {
         'tag_pattern' => '@SYSTEM',
         'filter' => {
           'tag_pattern' => 'var.log.middleware.**',
-          'type' => 'grep'
+          'type' => 'grep',
         },
         'match' => {
           'tag_pattern' => '**',
-          'type' => 's3'
-        }
-      }
+          'type' => 's3',
+        },
+      },
     )
 
     expect(fluent_config).to eq <<-CONFIG.strip_heredoc
@@ -134,8 +134,8 @@ RSpec.describe FluentConfig do
     fluent_config = described_class.generate(
       'match' => [
         { 'tag_pattern' => 'tag.9', 'type' => 'stdout' },
-        { 'tag_pattern' => 'tag.0', 'type' => 'stdout' }
-      ]
+        { 'tag_pattern' => 'tag.0', 'type' => 'stdout' },
+      ],
     )
 
     expect(fluent_config).to eq <<-CONFIG.strip_heredoc

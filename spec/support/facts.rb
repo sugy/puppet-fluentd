@@ -21,9 +21,9 @@ RSpec.shared_context 'debian', :debian do
       os: {
         name: 'Ubuntu',
         release: {
-          full: '14.04'
-        }
-      }
+          full: '14.04',
+        },
+      },
     }
   end
 end
