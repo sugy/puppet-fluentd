@@ -11,7 +11,7 @@ class fluentd::service inherits fluentd {
       exec { 'fluentd - delete stale service':
         command     => "sc.exe delete ${fluentd::service_name}",
         path        => ['C:\Windows\System32'],
-        unless      => "sc.exe query ${fluentd::service_name}",
+        onlyif      => "sc.exe query ${fluentd::service_name}",
         refreshonly => true,
         subscribe   => Package[$fluentd::package_name],
       }
