@@ -10,15 +10,14 @@ class fluentd::service inherits fluentd {
       # the second resource handles registering the new service
       exec { 'fluentd - delete stale service':
         command     => "sc.exe delete ${fluentd::service_name}",
-        path        => ['C:\Windows\System32'],
+        path        => ['C:/Windows/System32'],
         onlyif      => "sc.exe query ${fluentd::service_name}",
         refreshonly => true,
         subscribe   => Package[$fluentd::package_name],
       }
       ~> exec { 'fluentd - register service':
-        command => "fluentd --reg-winsvc i --winsvc-name ${fluentd::service_name} --reg-winsvc-auto-start --reg-winsvc-fluentdopt '-c C:/opt/td-agent/etc/td-agent/td-agent.conf -o C:/opt/td-agent/td-agent.log'", # lint:ignore:140chars
-        cwd     => 'C:\opt\td-agent\embedded\bin',
-        path    => ['C:\opt\td-agent\embedded\bin', 'C:\Windows\System32'],
+        command => "fluentd.bat --reg-winsvc i --winsvc-name ${fluentd::service_name} --reg-winsvc-auto-start --reg-winsvc-fluentdopt '-c C:/opt/td-agent/etc/td-agent/td-agent.conf -o C:/opt/td-agent/td-agent.log'", # lint:ignore:140chars
+        path    => ['C:/opt/td-agent/embedded/bin', 'C:/Windows/System32'],
         unless  => "sc.exe query ${fluentd::service_name}",
         require => Package[$fluentd::package_name],
         notify  => Service[$fluentd::service_name],
