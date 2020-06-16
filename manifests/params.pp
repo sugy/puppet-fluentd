@@ -1,22 +1,44 @@
 # Common fluentd parameters
 class fluentd::params {
-  $repo_install = true
   $repo_name = 'treasuredata'
   $repo_desc = 'TreasureData'
+  $repo_version = '3'
 
-  case $facts['osfamily'] {
-    'redhat': {
-      $repo_url = 'http://packages.treasuredata.com/2/redhat/$releasever/$basearch'
+  case $facts['os']['family'] {
+    'RedHat': {
+      $config_file = '/etc/td-agent/td-agent.conf'
+      $config_file_mode = '0640'
+      $config_path = '/etc/td-agent/config.d'
+      $config_path_mode = '0750'
+      $config_owner = 'td-agent'
+      $config_group = 'td-agent'
+      $package_provider = undef
+      $repo_manage = true
     }
-
-    'debian': {
-      $distro_id = downcase($facts['lsbdistid'])
-      $distro_codename = $facts['lsbdistcodename']
-      $repo_url = "http://packages.treasuredata.com/2/${distro_id}/${distro_codename}/"
+    'Debian': {
+      $config_file = '/etc/td-agent/td-agent.conf'
+      $config_file_mode = '0640'
+      $config_path = '/etc/td-agent/config.d'
+      $config_path_mode = '0750'
+      $config_owner = 'td-agent'
+      $config_group = 'td-agent'
+      $package_provider = undef
+      $repo_manage = true
     }
-
+    'windows': {
+      $config_file = 'C:/opt/td-agent/etc/td-agent/td-agent.conf'
+      $config_file_mode = undef
+      $config_path = 'C:/opt/td-agent/etc/td-agent/config.d'
+      $config_path_mode = undef
+      $config_owner = 'Administrator'
+      $config_group = 'Administrator'
+      $package_provider = 'chocolatey'
+      # there is no public repo for windows, we assume that the user has already
+      # setup the Chocolatey sources correctly
+      $repo_manage = false
+    }
     default: {
-      fail("Unsupported osfamily ${facts['osfamily']}")
+      fail("Unsupported osfamily ${facts['os']['family']}")
     }
   }
 
@@ -33,18 +55,6 @@ class fluentd::params {
   $service_enable = true
   $service_manage = true
 
-  # NOTE: Workaround for the following issue:
-  # https://tickets.puppetlabs.com/browse/PUP-5296
-  if $facts['osfamily'] == 'redhat' {
-    $service_provider = 'redhat'
-  } else {
-    $service_provider = undef
-  }
-
-  $config_file = '/etc/td-agent/td-agent.conf'
-  $config_path = '/etc/td-agent/config.d'
-  $config_owner = 'td-agent'
-  $config_group = 'td-agent'
   $configs = {}
 
   $plugins = {}

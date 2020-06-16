@@ -6,18 +6,39 @@ RSpec.describe 'fluentd' do
     supported_os: [
       {
         'operatingsystem'        => 'CentOS',
-        'operatingsystemrelease' => ['6', '7'],
+        'operatingsystemrelease' => ['6', '7', '8'],
       },
       {
         'operatingsystem'        => 'Ubuntu',
-        'operatingsystemrelease' => ['16', '18'],
+        'operatingsystemrelease' => ['16', '18', '20'],
+      },
+      {
+        'operatingsystem'        => 'Windows',
+        'operatingsystemrelease' => ['2012', '2016', '2019'],
       },
     ],
   }
 
   on_supported_os(test_on).each do |os, os_facts|
     context "on #{os}" do
-      let(:facts) { os_facts }
+      if os_facts[:os]['family'] == 'windows'
+        let(:facts) do
+          os_facts.merge(
+            'choco_install_path' => 'C:/ProgramData/chocolatey',
+            'chocolateyversion'  => '0',
+          )
+        end
+        let(:pre_condition) { 'include chocolatey' }
+        let(:hklm_instance) { instance_double(Win32::Registry) }
+
+        before(:each) do
+          allow_any_instance_of(Win32::Registry).to receive(:[]) # rubocop:disable RSpec/AnyInstance
+            .with('ChocolateyInstall')
+            .and_return('C:/ProgramData/chocolatey')
+        end
+      else
+        let(:facts) { os_facts }
+      end
 
       context 'base' do
         it { is_expected.to compile.with_all_deps }

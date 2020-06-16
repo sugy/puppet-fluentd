@@ -10,7 +10,7 @@ define fluentd::plugin(
     source          => $plugin_source,
     install_options => $plugin_install_options,
     provider        => $plugin_provider,
-    notify          => Class['Fluentd::Service'],
-    require         => Class['Fluentd::Install'],
+    notify          => Class['fluentd::service'],
+    require         => Class['fluentd::install'],
   }
 }
