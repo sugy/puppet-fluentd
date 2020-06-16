@@ -32,7 +32,7 @@ RSpec.describe 'fluentd' do
         let(:hklm_instance) { instance_double(Win32::Registry) }
 
         before(:each) do
-          allow_any_instance_of(Win32::Registry).to receive(:[])
+          allow_any_instance_of(Win32::Registry).to receive(:[]) # rubocop:disable RSpec/AnyInstance
             .with('ChocolateyInstall')
             .and_return('C:/ProgramData/chocolatey')
         end
