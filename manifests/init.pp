@@ -13,7 +13,7 @@ class fluentd (
   String $repo_gpgkeyid = $fluentd::params::repo_gpgkeyid,
   String $package_name = $fluentd::params::package_name,
   String $package_ensure = $fluentd::params::package_ensure,
-  String $package_provider = $fluentd::params::package_provider,
+  Optional[String] $package_provider = $fluentd::params::package_provider,
   String $service_name = $fluentd::params::service_name,
   String $service_ensure = $fluentd::params::service_ensure,
   Boolean $service_enable = $fluentd::params::service_enable,

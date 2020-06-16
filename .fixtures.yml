@@ -1,8 +1,12 @@
 ---
 fixtures:
   forge_modules:
-    stdlib: "puppetlabs/stdlib"
     apt: "puppetlabs/apt"
+    chocolatey: "puppetlabs/chocolatey"
+    powershell: "puppetlabs/powershell"
+    pwshlib: "puppetlabs/pwshlib"
+    registry: "puppetlabs/registry"
+    stdlib: "puppetlabs/stdlib"
     yumrepo_core: "puppetlabs/yumrepo_core"
   symlinks:
     fluentd: "#{source_dir}"
