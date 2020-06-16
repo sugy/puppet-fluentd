@@ -1,7 +1,11 @@
 ## Development
 
+## 2020-06-16 - Release v.0.11.0
+
 - Convert module to PDK
 - Added support for installing on Windows
+
+  Contributed by Nick Maludy (@nmaludy)
 
 ## 2017-09-01 - Release v. 0.10.0
 
