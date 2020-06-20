@@ -1,12 +1,10 @@
-require 'win32/registry'
-
 # class to create the FluentD service on Windows
-class Puppet::Provider::ServiceRecovery::ServiceRecovery
+class Puppet::Provider::FluentdWindowsService::FluentdWindowsService
   def initialize
     @service_doesnt_exit_error = 'The specified service does not exist as an installed service.'
-    @regex_service_name = Regexp.new(%r{SERVICE_NAME: (.*)\s*})
-    @regex_display_name = Regexp.new(%r{DISPLAY_NAME: (.*)\s*})
-    @regex_description = Regexp.new(%r{DESCRIPTION: (.*)\s*})
+    @regex_service_name = Regexp.new(%r{SERVICE_NAME:\s*(.*)\s*})
+    @regex_display_name = Regexp.new(%r{\s*DISPLAY_NAME\s*:\s*(.*)\s*})
+    @regex_description = Regexp.new(%r{DESCRIPTION:\s*(.*)\s*})
   end
 
   #######################
@@ -137,7 +135,7 @@ class Puppet::Provider::ServiceRecovery::ServiceRecovery
       sc(['delete', name])
     end
   end
-  
+
   def sc(*args)
     # use Puppet::Provider::Command here because we're running a "native" command
     # this is MUCH faster than launching powershell, even with pwshlib

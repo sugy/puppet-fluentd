@@ -2,10 +2,17 @@
 class fluentd::service inherits fluentd {
   if $fluentd::service_manage {
     if $facts['os']['family'] == 'windows' {
-      exec { 'fluentd - register service':
-        command   => "fluentd.bat --reg-winsvc i --winsvc-name ${fluentd::service_name} --reg-winsvc-auto-start", # lint:ignore:140chars
-        path      => ['C:/opt/td-agent/embedded/bin', 'C:/Windows/System32'],
-        unless    => "sc.exe query ${fluentd::service_name}",
+      # exec { 'fluentd - register service':
+      #   command   => "fluentd.bat --reg-winsvc i --winsvc-name ${fluentd::service_name} --reg-winsvc-auto-start", # lint:ignore:140chars
+      #   path      => ['C:/opt/td-agent/embedded/bin', 'C:/Windows/System32'],
+      #   unless    => "sc.exe query ${fluentd::service_name}",
+      #   subscribe => Package[$fluentd::package_name],
+      #   notify    => Service[$fluentd::service_name],
+      # }
+
+      fluentd_windows_service { $fluentd::service_name:
+        ensure    => present,
+        command   => 'C:/opt/td-agent/embedded/bin/fluentd.bat',
         subscribe => Package[$fluentd::package_name],
         notify    => Service[$fluentd::service_name],
       }
