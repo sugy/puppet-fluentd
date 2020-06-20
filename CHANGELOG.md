@@ -1,6 +1,12 @@
 ## Development
 
-## 2020-06-16 - Release v.0.11.0
+## 2020-06-16 - Release v0.12.0
+
+- Converted the Windows Service regsitration from an `exec` resource into a Resource API resource.
+
+  Contributed by Nick Maludy (@nmaludy)
+
+## 2020-06-16 - Release v0.11.0
 
 - Convert module to PDK
 - Added support for installing on Windows
