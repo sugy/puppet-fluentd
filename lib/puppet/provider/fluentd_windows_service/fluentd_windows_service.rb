@@ -66,7 +66,7 @@ class Puppet::Provider::FluentdWindowsService::FluentdWindowsService
       # if we get the following error, that just happens when the service
       # doesn't exist and we try to query it, ignore the error and use
       # the absent flag set above
-      raise e unless e.output.include?(@service_doesnt_exit_error)
+      raise e unless e.message.include?(@service_doesnt_exit_error)
     end
 
     # the fluentdopt options are stored in the registry
