@@ -1,7 +1,7 @@
 # class to create the FluentD service on Windows
 class Puppet::Provider::FluentdWindowsService::FluentdWindowsService
   def initialize
-    @service_doesnt_exit_error = 'The specified service does not exist as an installed service.'
+    @service_doesnt_exit_error = 'The specified service does not exist as an installed service'
     @regex_service_name = Regexp.new(%r{SERVICE_NAME:\s*(.*)\s*})
     @regex_display_name = Regexp.new(%r{\s*DISPLAY_NAME\s*:\s*(.*)\s*})
     @regex_description = Regexp.new(%r{DESCRIPTION:\s*(.*)\s*})
@@ -70,14 +70,18 @@ class Puppet::Provider::FluentdWindowsService::FluentdWindowsService
     end
 
     # the fluentdopt options are stored in the registry
-    Win32::Registry::HKEY_LOCAL_MACHINE.open("SYSTEM\\CurrentControlSet\\Services\\#{service}", Win32::Registry::KEY_ALL_ACCESS) do |reg|
-      instance[:fluentdopt] = reg['fluentdopt']
+    begin
+      Win32::Registry::HKEY_LOCAL_MACHINE.open("SYSTEM\\CurrentControlSet\\Services\\#{service}") do |reg|
+        instance[:fluentdopt] = reg['fluentdopt']
+      end
+    rescue Win32::Registry::Error # rubocop:disable Lint/HandleExceptions
+      # this happens of the key above doesn't exist
     end
-
     instance
   end
 
   def create(context, name, should, noop)
+    arguments = []
     arguments += ['--reg-winsvc', 'i'] # 'i' stands for install
     arguments += ['--winsvc-name', should[:name]]
     if should[:display_name]
@@ -95,7 +99,7 @@ class Puppet::Provider::FluentdWindowsService::FluentdWindowsService
       context.info("fluentd_windows_service[#{name}] would have run: #{should[:command]} #{arguments.join(' ')}")
     else
       # create the service
-      commad(should[:command], arguments)
+      command(should[:command], arguments)
     end
   end
 
