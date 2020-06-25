@@ -1,5 +1,12 @@
 ## Development
 
+## 2020-06-25 - Release v0.12.2
+
+- Fixed a bug in `fluentd_windows_service` that wasn't properly checking registry key didn't exist.
+
+  Contributed by Nick Maludy (@nmaludy)
+
+
 ## 2020-06-25 - Release v0.12.1
 
 - Fixed a bug in `fluentd_windows_service` that wasn't properly checking exception messages when the fluentd service didn't exist.
