@@ -1,5 +1,11 @@
 ## Development
 
+## 2020-06-25 - Release v0.12.1
+
+- Fixed a bug in `fluentd_windows_service` that wasn't properly checking exception messages when the fluentd service didn't exist.
+
+  Contributed by Nick Maludy (@nmaludy)
+
 ## 2020-06-16 - Release v0.12.0
 
 - Converted the Windows Service regsitration from an `exec` resource into a Resource API resource.
