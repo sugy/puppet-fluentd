@@ -52,7 +52,7 @@ RSpec.describe 'fluentd::repo' do
         end
         it do
           is_expected.to contain_exec('rpmkey')
-            .with('command' => "rpm --import https://packages.treasuredata.com/GPG-KEY-td-agent",
+            .with('command' => 'rpm --import https://packages.treasuredata.com/GPG-KEY-td-agent',
                   'path' => '/bin:/usr/bin',
                   'refreshonly' => true)
         end
@@ -82,8 +82,8 @@ RSpec.describe 'fluentd::repo' do
         end
       elsif os_facts[:os]['family'] == 'windows'
         it do
-          is_expected.to_not contain_yumrepo('treasuredata')
-          is_expected.to_not contain_apt__source('treasuredata')
+          is_expected.not_to contain_yumrepo('treasuredata')
+          is_expected.not_to contain_apt__source('treasuredata')
         end
       else
         it { is_expected.not_to compile }
