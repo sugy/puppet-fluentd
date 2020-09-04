@@ -1,5 +1,16 @@
 ## Development
 
+## 2020-09-03 - Release v0.12.3
+
+- Fixed a bug in `fluentd_windows_service` where the service description was being set to 
+  the wrong field.
+
+  Contributed by Nick Maludy (@nmaludy)
+
+- Fixed a bug in `fluentd::repo` on Debian/Ubuntu where the repo url was being setup incorrectly.
+
+  Contributed by Nick Maludy (@nmaludy) 
+
 ## 2020-06-25 - Release v0.12.2
 
 - Fixed a bug in `fluentd_windows_service` that wasn't properly checking registry key didn't exist.

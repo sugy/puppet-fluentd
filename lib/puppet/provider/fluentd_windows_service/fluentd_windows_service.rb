@@ -88,7 +88,7 @@ class Puppet::Provider::FluentdWindowsService::FluentdWindowsService
       arguments += ['--winsvc-display-name', should[:display_name]]
     end
     if should[:description]
-      arguments += ['--winsvc-display-name', should[:description]]
+      arguments += ['--winsvc-description', should[:description]]
     end
     if should[:fluentdopt]
       arguments += ['--reg-winsvc-fluentdopt', should[:fluentdopt]]

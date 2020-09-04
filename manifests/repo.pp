@@ -28,7 +28,7 @@ class fluentd::repo inherits fluentd {
                           "http://packages.treasuredata.com/${version}/${distro_id}/${distro_codename}/")
 
         apt::source { $fluentd::repo_name:
-          location     => repo_url,
+          location     => $repo_url,
           comment      => $fluentd::repo_desc,
           repos        => 'contrib',
           architecture => 'amd64',
