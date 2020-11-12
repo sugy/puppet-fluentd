@@ -44,7 +44,7 @@ RSpec.describe 'fluentd::repo' do
         it do
           is_expected.to contain_yumrepo('treasuredata')
             .with('descr' => 'TreasureData',
-                  'baseurl' => "http://packages.treasuredata.com/3/redhat/\$releasever/\$basearch",
+                  'baseurl' => "http://packages.treasuredata.com/4/redhat/\$releasever/\$basearch",
                   'enabled' => true,
                   'gpgcheck' => true,
                   'gpgkey' => 'https://packages.treasuredata.com/GPG-KEY-td-agent')
@@ -62,7 +62,7 @@ RSpec.describe 'fluentd::repo' do
 
         it do
           is_expected.to contain_apt__source('treasuredata')
-            .with('location' => "http://packages.treasuredata.com/3/#{distro_id}/#{distro_codename}/",
+            .with('location' => "http://packages.treasuredata.com/4/#{distro_id}/#{distro_codename}/",
                   'comment' => 'TreasureData',
                   'repos' => 'contrib',
                   'architecture' => 'amd64',
@@ -87,6 +87,43 @@ RSpec.describe 'fluentd::repo' do
         end
       else
         it { is_expected.not_to compile }
+      end
+
+      # ensure that the repo_version is changed and can setup v3 if necessary
+      context 'with repo_version = "3"' do
+        let(:pre_condition) { "class {'fluentd': repo_version => '3'}" }
+
+        if os_facts[:os]['family'] == 'RedHat'
+          it do
+            is_expected.to contain_yumrepo('treasuredata')
+              .with('descr' => 'TreasureData',
+                    'baseurl' => "http://packages.treasuredata.com/3/redhat/\$releasever/\$basearch",
+                    'enabled' => true,
+                    'gpgcheck' => true,
+                    'gpgkey' => 'https://packages.treasuredata.com/GPG-KEY-td-agent')
+              .that_notifies('Exec[rpmkey]')
+          end
+        elsif os_facts[:os]['family'] == 'Debian'
+          let(:distro_id) { facts[:lsbdistid].downcase }
+          let(:distro_codename) { facts[:lsbdistcodename] }
+
+          it do
+            is_expected.to contain_apt__source('treasuredata')
+              .with('location' => "http://packages.treasuredata.com/3/#{distro_id}/#{distro_codename}/",
+                    'comment' => 'TreasureData',
+                    'repos' => 'contrib',
+                    'architecture' => 'amd64',
+                    'release' => distro_codename,
+                    'key' => {
+                      'id'     => 'BEE682289B2217F45AF4CC3F901F9177AB97ACBE',
+                      'source' => 'https://packages.treasuredata.com/GPG-KEY-td-agent',
+                    },
+                    'include' => {
+                      'src' => false,
+                      'deb' => true,
+                    })
+          end
+        end
       end
     end
   end
