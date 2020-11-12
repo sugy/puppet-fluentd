@@ -2,7 +2,7 @@
 class fluentd::params {
   $repo_name = 'treasuredata'
   $repo_desc = 'TreasureData'
-  $repo_version = '3'
+  $repo_version = '4'
 
   case $facts['os']['family'] {
     'RedHat': {

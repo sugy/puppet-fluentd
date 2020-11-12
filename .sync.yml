@@ -56,8 +56,10 @@ Gemfile:
 #     - 'PuppetSyntax.exclude_paths = ["plans/**/*", "vendor/**/*"]'
 spec/spec_helper.rb:
   mock_with: ':rspec'
-.travis.yml:
-  deploy_to_forge:
-    enabled: true
-  user: encore
-  secure: "j36ume4cXNrzwMhiFiJnpq+mOT/0qcTsyOVAvmAJfFqyi2e+QWyDKs+MusZSSLCQMiuOcG6Wh/4UOWhbOT2Vl6RWb6LS5UYUWWAl7wd5DLV5oV4Mmt/T58sov5+8Arv2QObLSSx08qHKmy7msJCBlkvXbBkq0rg2JHZfIzbNZlvI+aKG7F/4xTqFPJPYyOh2IB0BKOuLwTk8LqSQn2EWhdDQACwT2vgIqc1A54WTtQflkPSPdspszD2fC730IwVZ7161agCbvtIv390pX3Bi7xEvTNkp7tjKNWd82euPFDI0RC9IJKkpDaZsW+xM551FptzPnnh6ZQW30dL6vuVePkhqYo5pjw9IxGrhCdP6mnbK4Hy7W94uf/rE4FUg7BMGGEvRV4zrqq/zhn9/jJUAyFBVph/ZiwJXtMYYUTdOxktF+cUAHPOKGhL+Kq0Qxb/LInww/Zu9jtyVefJiC7Lmu0c0MnychCnR8VLeZ6oM6+gnGCKA2ZHl4DAfkxSfIX3/Evm+lMOfSUz02jj0/3+KjY23AOH2Klpb7Nkstc0RjLdxQvOyf7PC+pz18u/DfIJn0UJletEN5nixzpsPEAzuLy4yLln66uXuIYri3n6aeLBSBlUPAlPpbGPtyhP9L4ivKTNzyAQ1rurnnWGwSLYfu3QfYcgBs3jx2BueBmA6iGg="
+.travis.yml:  
+  # we don't use Travis
+  unmanaged: true
+  # deploy_to_forge:
+  #   enabled: true
+  # user: encore
+  # secure: "j36ume4cXNrzwMhiFiJnpq+mOT/0qcTsyOVAvmAJfFqyi2e+QWyDKs+MusZSSLCQMiuOcG6Wh/4UOWhbOT2Vl6RWb6LS5UYUWWAl7wd5DLV5oV4Mmt/T58sov5+8Arv2QObLSSx08qHKmy7msJCBlkvXbBkq0rg2JHZfIzbNZlvI+aKG7F/4xTqFPJPYyOh2IB0BKOuLwTk8LqSQn2EWhdDQACwT2vgIqc1A54WTtQflkPSPdspszD2fC730IwVZ7161agCbvtIv390pX3Bi7xEvTNkp7tjKNWd82euPFDI0RC9IJKkpDaZsW+xM551FptzPnnh6ZQW30dL6vuVePkhqYo5pjw9IxGrhCdP6mnbK4Hy7W94uf/rE4FUg7BMGGEvRV4zrqq/zhn9/jJUAyFBVph/ZiwJXtMYYUTdOxktF+cUAHPOKGhL+Kq0Qxb/LInww/Zu9jtyVefJiC7Lmu0c0MnychCnR8VLeZ6oM6+gnGCKA2ZHl4DAfkxSfIX3/Evm+lMOfSUz02jj0/3+KjY23AOH2Klpb7Nkstc0RjLdxQvOyf7PC+pz18u/DfIJn0UJletEN5nixzpsPEAzuLy4yLln66uXuIYri3n6aeLBSBlUPAlPpbGPtyhP9L4ivKTNzyAQ1rurnnWGwSLYfu3QfYcgBs3jx2BueBmA6iGg="
