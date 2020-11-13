@@ -1,5 +1,12 @@
 ## Development
 
+## 2020-11-13 - Release v1.0.1
+
+- Fix td-agent YUM repo URL for v4 on RHEL/CentOS not behaving correctly when $releasever
+  is something like "7Server", instead it expect it to be "7"
+
+  Contributed by Nick Maludy (@nmaludy)
+
 ## 2020-11-13 - Release v1.0.0
 
 - Change default fluentd/td-agent version from `v3` to `v4`
