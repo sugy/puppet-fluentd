@@ -21,7 +21,7 @@ Puppet::ResourceApi.register_type(
     },
     command: {
       type: 'String',
-      desc: 'FluentD command to use for registering the windows service.',
+      desc: 'FluentD command to use for registering the windows service for td-agent v3.',
       default: 'C:/opt/td-agent/embedded/bin/fluentd.bat',
       behavior: :parameter,
     },

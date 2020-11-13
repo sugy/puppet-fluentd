@@ -1,6 +1,6 @@
 {
   "name": "encore-fluentd",
-  "version": "0.12.4",
+  "version": "1.0.0",
   "author": "encore",
   "summary": "Installs, configures, and manages Fluentd data collector",
   "license": "Apache-2.0",
@@ -72,7 +72,7 @@
     "td-agent",
     "logging"
   ],
-  "pdk-version": "1.18.0",
-  "template-url": "pdk-default#1.18.0",
-  "template-ref": "tags/1.18.0-0-g095317c"
+  "pdk-version": "1.18.1",
+  "template-url": "pdk-default#1.18.1",
+  "template-ref": "tags/1.18.1-0-g3d2e75c"
 }

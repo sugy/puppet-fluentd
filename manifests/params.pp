@@ -2,7 +2,7 @@
 class fluentd::params {
   $repo_name = 'treasuredata'
   $repo_desc = 'TreasureData'
-  $repo_version = '3'
+  $repo_version = '4'
 
   case $facts['os']['family'] {
     'RedHat': {
@@ -14,6 +14,7 @@ class fluentd::params {
       $config_group = 'td-agent'
       $package_provider = undef
       $repo_manage = true
+      $service_name = 'td-agent'
     }
     'Debian': {
       $config_file = '/etc/td-agent/td-agent.conf'
@@ -24,6 +25,7 @@ class fluentd::params {
       $config_group = 'td-agent'
       $package_provider = undef
       $repo_manage = true
+      $service_name = 'td-agent'
     }
     'windows': {
       $config_file = 'C:/opt/td-agent/etc/td-agent/td-agent.conf'
@@ -36,6 +38,8 @@ class fluentd::params {
       # there is no public repo for windows, we assume that the user has already
       # setup the Chocolatey sources correctly
       $repo_manage = false
+      # windows service uses a different name
+      $service_name = 'fluentdwinsvc'
     }
     default: {
       fail("Unsupported osfamily ${facts['os']['family']}")
@@ -50,7 +54,6 @@ class fluentd::params {
   $package_name = 'td-agent'
   $package_ensure = present
 
-  $service_name = 'td-agent'
   $service_ensure = running
   $service_enable = true
   $service_manage = true

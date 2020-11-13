@@ -1,5 +1,11 @@
 ## Development
 
+## 2020-11-13 - Release v1.0.0
+
+- Change default fluentd/td-agent version from `v3` to `v4`
+
+  Contributed by Nick Maludy (@nmaludy)
+
 ## 2020-09-03 - Release v0.12.4
 
 - Fixed a bug in `fluentd_windows_service` where the service description was using the wrong flag.
