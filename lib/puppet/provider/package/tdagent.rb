@@ -12,13 +12,14 @@ Puppet::Type.type(:package).provide :tdagent, parent: :gem, source: :gem do
       # v3 and older
       commands gemcmd: 'C:/opt/td-agent/embedded/bin/fluent-gem.bat'
     end
+  elsif Puppet::FileSystem.exist?('/usr/sbin/td-agent-gem')
+    # v3, v4 and newer
+    commands gemcmd: '/usr/sbin/td-agent-gem'
+  elsif Puppet::FileSystem.exist?('/opt/td-agent/usr/sbin/td-agent-gem')
+    # v0
+    commands gemcmd: '/opt/td-agent/usr/sbin/td-agent-gem'
   else
-    if Puppet::FileSystem.exist?('/usr/sbin/td-agent-gem')
-      # v3, v4 and newer
-      commands gemcmd: '/usr/sbin/td-agent-gem'
-    else
-      # v0
-      commands gemcmd: '/opt/td-agent/usr/sbin/td-agent-gem'
-    end
+    # use PATH to resolve
+    commands gemcmd: 'td-agent-gem'
   end
 end

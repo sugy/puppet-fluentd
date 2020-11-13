@@ -1,5 +1,7 @@
 ## Development
 
+## 2020-09-03 - Release v1.0.0
+
 - Change default fluentd/td-agent version from `v3` to `v4`
 
   Contributed by Nick Maludy (@nmaludy)
