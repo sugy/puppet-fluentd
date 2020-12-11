@@ -22,7 +22,6 @@ class fluentd::repo inherits fluentd {
           $repo_url = pick($fluentd::repo_url,
                           "http://packages.treasuredata.com/${version}/redhat/\$releasever/\$basearch")
         }
-        
         yumrepo { $fluentd::repo_name:
           descr    => $fluentd::repo_desc,
           baseurl  => $repo_url,
