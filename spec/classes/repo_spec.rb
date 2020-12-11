@@ -45,13 +45,23 @@ RSpec.describe 'fluentd::repo' do
           # FYI v4 needs to hard code major version instead of $releasever
           # see https://github.com/fluent/fluentd-docs-gitbook/issues/222
           # hopefully this gets fixed in the future
-          is_expected.to contain_yumrepo('treasuredata')
-            .with('descr' => 'TreasureData',
-                  'baseurl' => "http://packages.treasuredata.com/4/redhat/#{os_facts[:os]['release']['major']}/\$basearch",
-                  'enabled' => true,
-                  'gpgcheck' => true,
-                  'gpgkey' => 'https://packages.treasuredata.com/GPG-KEY-td-agent')
-            .that_notifies('Exec[rpmkey]')
+          if os_facts[:os]['name'] == 'Amazon'
+            is_expected.to contain_yumrepo('treasuredata')
+              .with('descr' => 'TreasureData',
+                    'baseurl' => "http://packages.treasuredata.com/4/amazon/#{os_facts[:os]['release']['major']}/\$basearch",
+                    'enabled' => true,
+                    'gpgcheck' => true,
+                    'gpgkey' => 'https://packages.treasuredata.com/GPG-KEY-td-agent')
+              .that_notifies('Exec[rpmkey]')
+          else
+            is_expected.to contain_yumrepo('treasuredata')
+              .with('descr' => 'TreasureData',
+                    'baseurl' => "http://packages.treasuredata.com/4/redhat/#{os_facts[:os]['release']['major']}/\$basearch",
+                    'enabled' => true,
+                    'gpgcheck' => true,
+                    'gpgkey' => 'https://packages.treasuredata.com/GPG-KEY-td-agent')
+              .that_notifies('Exec[rpmkey]')
+          end
         end
         it do
           is_expected.to contain_exec('rpmkey')
