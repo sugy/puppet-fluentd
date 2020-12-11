@@ -14,8 +14,15 @@ class fluentd::repo inherits fluentd {
           default => "\$releasever",
         }
 
-        $repo_url = pick($fluentd::repo_url,
-                          "http://packages.treasuredata.com/${version}/redhat/${releasever}/\$basearch")
+        if $facts['os']['name'] == 'Amazon' {
+          $repo_url = pick($fluentd::repo_url,
+                          "http://packages.treasuredata.com/${version}/amazon/\$releasever/\$basearch")
+        }
+        else {
+          $repo_url = pick($fluentd::repo_url,
+                          "http://packages.treasuredata.com/${version}/redhat/\$releasever/\$basearch")
+        }
+        
         yumrepo { $fluentd::repo_name:
           descr    => $fluentd::repo_desc,
           baseurl  => $repo_url,
