@@ -1,5 +1,19 @@
 ## Development
 
+## 2020-11-13 - Release v1.0.2
+
+- Fix `tdagent` provider for `package` to implement proper lazy delay of its commands
+  and pick up the correct command path once `td-agent` is properly installed.
+  This fixes a bug where the `tdagent` provider for `package` was not usable during
+  the Puppet run when `td-agent` is installed.
+
+  Contributed by Nick Maludy (@nmaludy)
+  
+- Removed fix put in place in v1.0.1 for RHE/CentOS $releasever workaround.
+  Treasure Data has fixed the problem on their repo and "7Server" now redirects properly.
+
+  Contributed by Nick Maludy (@nmaludy)
+
 ## 2020-11-13 - Release v1.0.1
 
 - Fix td-agent YUM repo URL for v4 on RHEL/CentOS not behaving correctly when $releasever
