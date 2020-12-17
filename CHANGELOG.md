@@ -8,6 +8,11 @@
   the Puppet run when `td-agent` is installed.
 
   Contributed by Nick Maludy (@nmaludy)
+  
+- Removed fix put in place in v1.0.1 for RHE/CentOS $releasever workaround.
+  Treasure Data has fixed the problem on their repo and "7Server" now redirects properly.
+
+  Contributed by Nick Maludy (@nmaludy)
 
 ## 2020-11-13 - Release v1.0.1
 
