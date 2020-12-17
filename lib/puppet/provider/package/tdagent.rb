@@ -11,8 +11,9 @@ Puppet::Type.type(:package).provide :tdagent, parent: :gem, source: :gem do
     raise Puppet::Error, _("Provider %{name} package command '%{command}' does not exist on this host, it couldn't be found in the following paths: %{paths}") % { name: name, cmd: cmd, paths: paths }
   end
 
-  # TODO: should we also look in PATH?
   def self.provider_command
+    # FUTURE: if this still isn't good enough in the future we could append the PATH
+    #         components and look there too
     if Puppet::Util::Platform.windows?
       gem_cmd = 'fluent-gem.bat'
       search_paths = [
@@ -25,9 +26,9 @@ Puppet::Type.type(:package).provide :tdagent, parent: :gem, source: :gem do
       gem_cmd = 'td-agent-gem'
       search_paths = [
         # v3, v4 and newer
-        '/usr/sbin/',
+        '/usr/sbin',
         # v0
-        '/opt/td-agent/usr/sbin/td-agent-gem',
+        '/opt/td-agent/usr/sbin',
       ]
     end
     which_from_paths(gem_cmd, search_paths)
