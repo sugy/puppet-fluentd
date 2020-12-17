@@ -4,8 +4,13 @@ class fluentd::repo inherits fluentd {
     $version = $fluentd::repo_version
     case $facts['os']['family'] {
       'RedHat': {
+        $os_name = $facts['os']['name'] ? {
+          'Amazon' => 'amazon',
+          default  => 'redhat',
+        }
+
         $repo_url = pick($fluentd::repo_url,
-                          "http://packages.treasuredata.com/${version}/redhat/\$releasever/\$basearch")
+                          "http://packages.treasuredata.com/${version}/${os_name}/\$releasever/\$basearch")
         yumrepo { $fluentd::repo_name:
           descr    => $fluentd::repo_desc,
           baseurl  => $repo_url,
