@@ -4,18 +4,8 @@ class fluentd::repo inherits fluentd {
     $version = $fluentd::repo_version
     case $facts['os']['family'] {
       'RedHat': {
-        # Version 4 of the YUM repo doesn't behave correctly when yum $releasever
-        # is set to something like "7Server", instead it expects it to simply be
-        # the major version "7".
-        # I'm sure this will get fixed at some point, see:
-        # https://github.com/fluent/fluentd-docs-gitbook/issues/222
-        $releasever = $version ? {
-          '4'     => $facts['os']['release']['major'],
-          default => "\$releasever",
-        }
-
         $repo_url = pick($fluentd::repo_url,
-                          "http://packages.treasuredata.com/${version}/redhat/${releasever}/\$basearch")
+                          "http://packages.treasuredata.com/${version}/redhat/\$releasever/\$basearch")
         yumrepo { $fluentd::repo_name:
           descr    => $fluentd::repo_desc,
           baseurl  => $repo_url,

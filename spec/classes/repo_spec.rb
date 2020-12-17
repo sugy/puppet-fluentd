@@ -42,12 +42,9 @@ RSpec.describe 'fluentd::repo' do
 
       if os_facts[:os]['family'] == 'RedHat'
         it do
-          # FYI v4 needs to hard code major version instead of $releasever
-          # see https://github.com/fluent/fluentd-docs-gitbook/issues/222
-          # hopefully this gets fixed in the future
           is_expected.to contain_yumrepo('treasuredata')
             .with('descr' => 'TreasureData',
-                  'baseurl' => "http://packages.treasuredata.com/4/redhat/#{os_facts[:os]['release']['major']}/\$basearch",
+                  'baseurl' => "http://packages.treasuredata.com/4/redhat/\$releasever/\$basearch",
                   'enabled' => true,
                   'gpgcheck' => true,
                   'gpgkey' => 'https://packages.treasuredata.com/GPG-KEY-td-agent')
