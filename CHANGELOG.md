@@ -1,10 +1,12 @@
 ## Development
 
+## 2020-12-17 - Release v1.1.0
+
 - Added support for Amazon linux.
 
   Contributed by Luc Duriez (@lduriez)
-  
-## 2020-11-13 - Release v1.0.2
+
+## 2020-12-17 - Release v1.0.2
 
 - Fix `tdagent` provider for `package` to implement proper lazy delay of its commands
   and pick up the correct command path once `td-agent` is properly installed.
@@ -12,7 +14,7 @@
   the Puppet run when `td-agent` is installed.
 
   Contributed by Nick Maludy (@nmaludy)
-  
+
 - Removed fix put in place in v1.0.1 for RHE/CentOS $releasever workaround.
   Treasure Data has fixed the problem on their repo and "7Server" now redirects properly.
 
@@ -39,14 +41,14 @@
 
 ## 2020-09-03 - Release v0.12.3
 
-- Fixed a bug in `fluentd_windows_service` where the service description was being set to 
+- Fixed a bug in `fluentd_windows_service` where the service description was being set to
   the wrong field.
 
   Contributed by Nick Maludy (@nmaludy)
 
 - Fixed a bug in `fluentd::repo` on Debian/Ubuntu where the repo url was being setup incorrectly.
 
-  Contributed by Nick Maludy (@nmaludy) 
+  Contributed by Nick Maludy (@nmaludy)
 
 ## 2020-06-25 - Release v0.12.2
 
