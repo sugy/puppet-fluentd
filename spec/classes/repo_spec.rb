@@ -5,6 +5,10 @@ RSpec.describe 'fluentd::repo' do
     hardwaremodels: ['x86_64'],
     supported_os: [
       {
+        'operatingsystem'        => 'Amazon',
+        'operatingsystemrelease' => ['2'],
+      },
+      {
         'operatingsystem'        => 'CentOS',
         'operatingsystemrelease' => ['6', '7', '8'],
       },
@@ -105,13 +109,23 @@ RSpec.describe 'fluentd::repo' do
 
         if os_facts[:os]['family'] == 'RedHat'
           it do
-            is_expected.to contain_yumrepo('treasuredata')
-              .with('descr' => 'TreasureData',
-                    'baseurl' => "http://packages.treasuredata.com/3/redhat/\$releasever/\$basearch",
-                    'enabled' => true,
-                    'gpgcheck' => true,
-                    'gpgkey' => 'https://packages.treasuredata.com/GPG-KEY-td-agent')
-              .that_notifies('Exec[rpmkey]')
+            if os_facts[:os]['name'] == 'Amazon'
+              is_expected.to contain_yumrepo('treasuredata')
+                .with('descr' => 'TreasureData',
+                      'baseurl' => "http://packages.treasuredata.com/3/amazon/\$releasever/\$basearch",
+                      'enabled' => true,
+                      'gpgcheck' => true,
+                      'gpgkey' => 'https://packages.treasuredata.com/GPG-KEY-td-agent')
+                .that_notifies('Exec[rpmkey]')
+            else
+              is_expected.to contain_yumrepo('treasuredata')
+                .with('descr' => 'TreasureData',
+                      'baseurl' => "http://packages.treasuredata.com/3/redhat/\$releasever/\$basearch",
+                      'enabled' => true,
+                      'gpgcheck' => true,
+                      'gpgkey' => 'https://packages.treasuredata.com/GPG-KEY-td-agent')
+                .that_notifies('Exec[rpmkey]')
+            end
           end
         elsif os_facts[:os]['family'] == 'Debian'
           let(:distro_id) { facts[:lsbdistid].downcase }

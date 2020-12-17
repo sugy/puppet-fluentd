@@ -1,5 +1,9 @@
 ## Development
 
+- Added support for Amazon linux.
+
+  Contributed by Luc Duriez (@lduriez)
+  
 ## 2020-11-13 - Release v1.0.2
 
 - Fix `tdagent` provider for `package` to implement proper lazy delay of its commands
