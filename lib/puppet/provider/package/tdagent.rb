@@ -8,7 +8,7 @@ Puppet::Type.type(:package).provide :tdagent, parent: :gem, source: :gem do
       dest = File.expand_path(File.join(dir, command))
       return dest if FileTest.file?(dest) && FileTest.executable?(dest)
     end
-    raise Puppet::Error, _("Provider %{name} package command '%{command}' does not exist on this host, it couldn't be found in the following paths: %{paths}") % { name: name, cmd: cmd, paths: paths }
+    raise Puppet::Error, _("Provider %{name} package command '%{command}' does not exist on this host, it couldn't be found in the following paths: %{paths}") % { name: name, command: command, paths: paths }
   end
 
   def self.provider_command
