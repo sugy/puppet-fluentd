@@ -1,5 +1,11 @@
 ## Development
 
+## 2021-06-16 - Release v1.1.1
+
+- Fixed bug in error handling if `tdaget` provider.
+
+  Contributed by Brendan Harley (@skylt)
+
 ## 2020-12-17 - Release v1.1.0
 
 - Added support for Amazon linux.
