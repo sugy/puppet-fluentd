@@ -1,5 +1,15 @@
 ## Development
 
+## 2021-07-07 - Release v1.1.2
+
+- Fixed Github ACtions workflow
+
+  Contributed by Nick Maludy (@nmaludy)
+
+- PDK sync to `2.1.1`
+
+  Contributed by Nick Maludy (@nmaludy)
+
 ## 2021-06-16 - Release v1.1.1
 
 - Fixed bug in error handling if `tdaget` provider.

@@ -1,4 +1,8 @@
 ---
+.devcontainer/Dockerfile:
+  unmanaged: true
+.devcontainer/devcontainer.json:
+  unmanaged: true
 .gitignore:
   paths:
     - .rerun.json
