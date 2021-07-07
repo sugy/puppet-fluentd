@@ -74,7 +74,7 @@ class Puppet::Provider::FluentdWindowsService::FluentdWindowsService
       Win32::Registry::HKEY_LOCAL_MACHINE.open("SYSTEM\\CurrentControlSet\\Services\\#{service}") do |reg|
         instance[:fluentdopt] = reg['fluentdopt']
       end
-    rescue Win32::Registry::Error # rubocop:disable Lint/HandleExceptions
+    rescue Win32::Registry::Error
       # this happens of the key above doesn't exist
     end
     instance
