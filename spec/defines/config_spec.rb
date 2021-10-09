@@ -29,6 +29,9 @@ RSpec.describe 'fluentd::config' do
       let(:params) do
         {
           config: {
+            'system' => {
+              'log_level' => 'warn',
+            },
             'match' => {
               'tag_pattern' => '**',
               'type' => 'forward',
@@ -68,6 +71,8 @@ RSpec.describe 'fluentd::config' do
                   'mode'    => '0640',
                   'require' => 'Class[Fluentd::Install]',
                   'notify'  => 'Class[Fluentd::Service]')
+            .with_content(%r{<system>})
+            .with_content(%r{^[\s]+log_level warn})
             .with_content(%r{<match \*\*>})
             .with_content(%r{@type forward})
             .with_content(%r{<server>})
