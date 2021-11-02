@@ -1,5 +1,7 @@
 ## Development
 
+- Fixed prepending of `@` in system config where it is invalid (@synical)
+
 ## 2021-07-07 - Release v1.1.2
 
 - Fixed Github ACtions workflow
