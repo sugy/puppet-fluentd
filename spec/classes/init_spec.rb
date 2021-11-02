@@ -35,7 +35,7 @@ RSpec.describe 'fluentd' do
           allow_any_instance_of(Win32::Registry).to receive(:[]) # rubocop:disable RSpec/AnyInstance
             .with('ChocolateyInstall')
             .and_return('C:/ProgramData/chocolatey')
-          allow_any_instance_of(Puppet::Type.type(:service).provider(:windows)).to receive(:validate)
+          allow_any_instance_of(Puppet::Type.type(:service).provider(:windows)).to receive(:validate)  # rubocop:disable RSpec/AnyInstance
         end
       else
         let(:facts) { os_facts }
