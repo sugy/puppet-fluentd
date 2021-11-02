@@ -1,5 +1,7 @@
 ## Development
 
+## 2021-11-02 - Release v1.2.0
+
 - Add purge_config_dir parameter
 
   Contributed by Luc Duriez (@lduriez)
