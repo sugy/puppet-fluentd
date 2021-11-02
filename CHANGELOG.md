@@ -1,5 +1,9 @@
 ## Development
 
+- Add purge_config_dir parameter
+
+  Contributed by Luc Duriez (@lduriez)
+
 ## 2021-07-07 - Release v1.1.2
 
 - Fixed Github ACtions workflow

@@ -212,7 +212,7 @@ Default value: {}
 
 Default value: {}
 
-#### `manage_config_dir`
+#### `purge_config_dir`
 
 Exclusively handle config files into `fluentd::conf_dir`. If `true` config files not created by puppet will be removed, default to `true`.
 

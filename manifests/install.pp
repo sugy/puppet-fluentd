@@ -13,9 +13,9 @@ class fluentd::install inherits fluentd {
     owner   => $fluentd::config_owner,
     group   => $fluentd::config_group,
     mode    => $fluentd::config_path_mode,
-    recurse => $fluentd::manage_config_dir,
+    recurse => $fluentd::purge_config_dir,
     force   => true,
-    purge   => $fluentd::manage_config_dir,
+    purge   => $fluentd::purge_config_dir,
   }
 
   -> file { $fluentd::config_file:
