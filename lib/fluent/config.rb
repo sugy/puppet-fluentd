@@ -24,7 +24,7 @@ module FluentConfig
             plugin_config.keys.sort.reduce('') do |body, parameter|
               body << directive_body(
                 plugin_type == 'system' ? parameter : format_parameter(parameter),
-                plugin_config.fetch(parameter)
+                plugin_config.fetch(parameter),
               )
             end
           end
