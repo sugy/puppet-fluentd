@@ -26,7 +26,7 @@ class fluentd (
   String $config_group = $fluentd::params::config_group,
   Hash $configs = $fluentd::params::configs,
   Hash $plugins = $fluentd::params::plugins,
-  Boolean $purge_config_dir = $fluentd::params::manage_config_dir
+  Boolean $purge_config_dir = $fluentd::params::purge_config_dir
 ) inherits fluentd::params {
   contain fluentd::install
   contain fluentd::service

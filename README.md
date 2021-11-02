@@ -214,7 +214,7 @@ Default value: {}
 
 #### `purge_config_dir`
 
-Exclusively handle config files into `fluentd::conf_dir`. If `true` config files not created by puppet will be removed, default to `true`.
+Exclusively handle config files into `fluentd::conf_dir`. If `true` config files not created by puppet will be removed, default to `false`.
 
 ### Public Defines
 
