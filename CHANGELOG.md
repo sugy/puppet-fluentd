@@ -4,6 +4,8 @@
 
   Contributed by Luc Duriez (@lduriez)
 
+- Fixed prepending of `@` in system config where it is invalid (@synical)
+
 - PDK sync to `2.2.0`
 
   Contributed by Nick Maludy (@nmaludy)
