@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'puppet/util/windows/service'
+require 'puppet/util/windows'
 
 RSpec.describe 'fluentd' do
   test_on = {
