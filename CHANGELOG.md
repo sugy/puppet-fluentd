@@ -1,5 +1,9 @@
 ## Development
 
+- Add purge_config_dir parameter
+
+  Contributed by Luc Duriez (@lduriez)
+
 - Fixed prepending of `@` in system config where it is invalid (@synical)
 
 - PDK sync to `2.2.0`

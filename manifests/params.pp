@@ -61,4 +61,6 @@ class fluentd::params {
   $configs = {}
 
   $plugins = {}
+
+  $purge_config_dir = false
 }
