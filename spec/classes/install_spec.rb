@@ -40,9 +40,9 @@ RSpec.describe 'fluentd::install' do
                   'owner'   => 'Administrator',
                   'group'   => 'Administrator',
                   'mode'    => nil,
-                  'recurse' => true,
+                  'recurse' => false,
                   'force'   => true,
-                  'purge'   => true)
+                  'purge'   => false)
         end
       else
         it do
@@ -59,9 +59,9 @@ RSpec.describe 'fluentd::install' do
                   'owner'   => 'td-agent',
                   'group'   => 'td-agent',
                   'mode'    => '0750',
-                  'recurse' => true,
+                  'recurse' => false,
                   'force'   => true,
-                  'purge'   => true)
+                  'purge'   => false)
         end
 
         case os_facts[:os]['family']
