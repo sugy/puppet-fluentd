@@ -1,5 +1,9 @@
 ## Development
 
+- PDK sync to `2.2.0`
+
+  Contributed by Nick Maludy (@nmaludy)
+
 ## 2021-07-07 - Release v1.1.2
 
 - Fixed Github ACtions workflow
