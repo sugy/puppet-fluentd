@@ -25,11 +25,17 @@ jobs:
             check: "check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop syntax lint metadata_lint"
             name: 'static'
           - ruby: '2.5'
-            puppet: "6.0"
+            # pinning to 6.24.0 because of https://tickets.puppetlabs.com/browse/PUP-11319
+            # TODO remove this pin when 6.25.1 is released
+            # puppet: "6.0"
+            puppet: "6.24.0"
             check: "parallel_spec"
             name: 'spec'
           - ruby: '2.7'
-            puppet: "7.0"
+            # pinning to 6.11.0 because of https://tickets.puppetlabs.com/browse/PUP-11319
+            # TODO remove this pin when 7.12.1 is released
+            # puppet: "7.0"
+            puppet: "7.11.0"
             check: "parallel_spec"
             name: 'spec'
     env:
