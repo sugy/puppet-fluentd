@@ -10,15 +10,15 @@
   "dependencies": [
     {
       "name": "puppetlabs/apt",
-      "version_requirement": ">= 2.0.0 < 8.0.0"
+      "version_requirement": ">= 2.0.0 < 9.2.0"
     },
     {
       "name": "puppetlabs/chocolatey",
-      "version_requirement": ">= 4.0.0 < 6.0.0"
+      "version_requirement": ">= 4.0.0 < 8.1.0"
     },
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.13.0 < 7.0.0"
+      "version_requirement": ">= 4.13.0 < 9.3.0"
     },
     {
       "name": "puppetlabs/yumrepo_core",
